@@ -1,1 +1,167 @@
+# Part 2 – User and Group Creation
 
+Date: 26/02/2026
+
+## Objective
+Create local users automatically from a CSV file and assign them to the correct groups.
+
+---
+
+## Local Groups
+
+The following local groups were verified/created:
+
+- Innkaup
+- Sala
+- Yfirstjorn
+- Allir
+
+![Groups created](../imagenes/parte2_grupos.png)
+
+---
+
+## CSV File
+
+A file named `usuarios.csv` was created with the following structure:
+
+- Nombre (Username)
+- Password
+- Grupo (Group)
+- FullName
+
+The file contains 9 employees.
+
+![CSV Content](../imagenes/parte2_csv.png)
+
+---
+
+## PowerShell Script
+
+A script named `crear_usuarios.ps1` was created to:
+
+- Import user data from the CSV file
+- Create local users
+- Assign passwords
+- Add users to their corresponding group
+- Add all users to the group "Allir"
+
+The script executed successfully without errors.
+
+![Script execution](../imagenes/parte2_script.png)
+
+---
+
+## Verification
+
+It was verified that:
+
+- All 9 users were created
+- All users are enabled
+- Each user belongs to their corresponding group
+- All users belong to the "Allir" group
+
+![Group verification](../imagenes/parte2_verificacion_grupos.png)
+
+
+# Part 3 – Folder Structure and Permissions
+
+Date: 26/02/2026
+
+## Objective
+Create a folder structure for each department and configure proper NTFS permissions.
+
+---
+
+## Folder Structure
+
+The following structure was created:
+
+C:\Gogn
+
+- Innkaup
+- Sala
+- Yfirstjorn
+- Sameign
+
+![Folder structure](../imagenes/parte3_estructura.png)
+
+---
+
+## Permission Configuration
+
+Inheritance was removed using:
+
+icacls /inheritance:r
+
+Then specific permissions were assigned:
+
+- Administrators → Full Control
+- User monti → Full Control
+- Corresponding group → Modify
+- Sameign → Group Allir with Modify permission
+
+Permissions were verified using the icacls command.
+
+![Permissions configured](../imagenes/parte3_permisos.png)
+
+---
+
+## Test Files
+
+A .txt file was created inside each folder to verify correct functionality:
+
+- Innkaup.txt
+- Sala.txt
+- Yfirstjorn.txt
+- Sameign.txt
+
+![Test files](../imagenes/parte3_archivos.png)
+
+
+# Part 4 – Security Configuration
+
+Date: 26/02/2026
+
+## Password Policy
+
+The system password policy was configured with the following settings:
+
+- Minimum password length: 8 characters
+- Maximum password age: 90 days
+- Password history: 5 passwords remembered
+- Account lockout policy configured
+
+Verification was performed using:
+
+net accounts
+
+![Password policy](../imagenes/parte4_politica_contrasenas.png)
+
+---
+
+## Firewall Configuration
+
+Windows Defender Firewall was configured with the following rules:
+
+1. Block all inbound traffic
+2. Allow ICMPv4 (Ping) only
+
+Rules created:
+
+- "Bloquear todo entrante" → Action: Block
+- "Permitir Ping" → Action: Allow
+
+The rules are enabled and applied to all profiles.
+
+![Firewall rules](../imagenes/parte4_firewall.png)
+
+---
+
+## Final Result
+
+The system meets the required security standards:
+
+- Users properly organized
+- NTFS permissions correctly configured
+- Password policy enforced
+- Firewall restricting inbound traffic
